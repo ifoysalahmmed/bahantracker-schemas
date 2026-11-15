@@ -29,10 +29,13 @@ export const ActivityAction = z.enum([
   'object.speed_limit_change',
   'object.odometer_change',
   'object.alarm_settings_change',
+  'zone.create',
+  'zone.update',
+  'zone.delete',
 ]);
 
 export type ActivityAction = z.infer<typeof ActivityAction>;
 
-export const TargetType = z.enum(['account', 'client', 'object']);
+export const TargetType = z.enum(['account', 'client', 'object', 'zone']);
 
 export type TargetType = z.infer<typeof TargetType>;
