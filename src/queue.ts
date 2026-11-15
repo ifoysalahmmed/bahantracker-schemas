@@ -13,3 +13,7 @@ export const SETTINGS_CHANGED = 'settings.changed';
 export const LIVE_SUBJECTS = 'live.>';
 
 export const liveSubject = (clientId: string): string => `live.${clientId}`;
+
+export const ALARM_SUBJECTS = 'alarms.>';
+
+export const alarmSubject = (clientId: string): string => `alarms.${clientId}`;

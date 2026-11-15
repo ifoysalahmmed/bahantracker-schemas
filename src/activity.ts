@@ -28,6 +28,7 @@ export const ActivityAction = z.enum([
   'object.enable',
   'object.speed_limit_change',
   'object.odometer_change',
+  'object.alarm_settings_change',
 ]);
 
 export type ActivityAction = z.infer<typeof ActivityAction>;

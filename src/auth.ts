@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { ClientRole, Password, Phone, Role, StaffRole } from './accounts.js';
+import { AlarmPreferences } from './alarms.js';
 import { NamedId, UtcTime } from './common.js';
 
 const EnteredPassword = z.string().min(1).max(128);
@@ -46,6 +47,7 @@ export type Me = z.infer<typeof Me>;
 export const ClientMe = Me.extend({
   role: ClientRole,
   client: NamedId,
+  alarmPreferences: AlarmPreferences,
   viewedBy: z
     .object({
       id: z.string(),

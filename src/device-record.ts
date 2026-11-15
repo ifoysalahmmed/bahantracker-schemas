@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { DeviceAlarm } from './alarms.js';
 import { IMEI, Percent, UtcTime } from './common.js';
 
 const recordFields = {
@@ -30,6 +31,14 @@ export const PositionRecord = z.object({
 
 export type PositionRecord = z.infer<typeof PositionRecord>;
 
+export const AlarmRecord = PositionRecord.extend({
+  kind: z.literal('alarm'),
+  alarm: DeviceAlarm,
+  alarmCode: z.int().min(0).max(255),
+});
+
+export type AlarmRecord = z.infer<typeof AlarmRecord>;
+
 // A GT06 heartbeat carries no time of its own, so only receivedAt orders it.
 export const StatusRecord = z.object({
   ...recordFields,
@@ -52,6 +61,7 @@ export type RefusedRecord = z.infer<typeof RefusedRecord>;
 
 export const DeviceRecord = z.discriminatedUnion('kind', [
   PositionRecord,
+  AlarmRecord,
   StatusRecord,
   RefusedRecord,
 ]);
