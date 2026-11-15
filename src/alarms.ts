@@ -48,6 +48,8 @@ export const Alarm = z.object({
   speedKmh: z.number().min(0),
   value: z.number().nullable(),
   limitValue: z.number().nullable(),
+  zoneId: z.string().nullable(),
+  zoneName: z.string().nullable(),
 });
 
 export type Alarm = z.infer<typeof Alarm>;
@@ -62,7 +64,7 @@ export type AlarmMessage = z.infer<typeof AlarmMessage>;
 export const AlarmCursor = z
   .string()
   .regex(
-    /^[0-9]{1,15}_[1-9][0-9]{0,17}_(?:overspeed|ignition_on|ignition_off|power_cut|low_battery|sos|zone_in|zone_out|excessive_idling|vibration)$/,
+    /^[0-9]{1,15}_[1-9][0-9]{0,17}_(?:0|[1-9][0-9]{0,17})_(?:overspeed|ignition_on|ignition_off|power_cut|low_battery|sos|zone_in|zone_out|excessive_idling|vibration)$/,
   );
 
 export type AlarmCursor = z.infer<typeof AlarmCursor>;

@@ -47,9 +47,9 @@ export const Track = z
 
 export type Track = z.infer<typeof Track>;
 
-const Latitude = z.number().min(-90).max(90);
+export const Latitude = z.number().min(-90).max(90);
 
-const Longitude = z.number().min(-180).max(180);
+export const Longitude = z.number().min(-180).max(180);
 
 export const HistoryPeriod = z.object({
   start: UtcTime,
@@ -93,6 +93,8 @@ export const HistoryAlarm = z.object({
   speedKmh: z.number().min(0),
   value: z.number().nullable(),
   limitValue: z.number().nullable(),
+  zoneId: z.string().nullable(),
+  zoneName: z.string().nullable(),
 });
 
 export type HistoryAlarm = z.infer<typeof HistoryAlarm>;

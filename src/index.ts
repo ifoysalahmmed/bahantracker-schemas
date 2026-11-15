@@ -12,3 +12,4 @@ export * from './queue.js';
 export * from './staff.js';
 export * from './users.js';
 export * from './vehicles.js';
+export * from './zones.js';
