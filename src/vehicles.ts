@@ -43,6 +43,7 @@ export const VehicleState = z.object({
   batteryLevel: Percent.nullable(),
   gsmSignal: Percent.nullable(),
   motion: Motion.nullable(),
+  motionSince: UtcTime.nullable(),
   lastSeenAt: UtcTime,
   dayDistance: DayDistance.nullable(),
 });
