@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Name } from './accounts.js';
-import { Id } from './common.js';
+import { Id, UtcTime } from './common.js';
 import { Latitude, Longitude } from './history.js';
 
 export const ZONES_PER_CLIENT_MAX = 500;
@@ -128,9 +128,23 @@ export const ZoneShape = z.discriminatedUnion('kind', [
 
 export type ZoneShape = z.infer<typeof ZoneShape>;
 
+export const ZoneColor = z.enum([
+  'blue',
+  'violet',
+  'pink',
+  'red',
+  'orange',
+  'teal',
+  'brown',
+  'slate',
+]);
+
+export type ZoneColor = z.infer<typeof ZoneColor>;
+
 export const Zone = z.object({
   id: z.string(),
   name: z.string(),
+  color: ZoneColor,
   shape: ZoneShape,
   alarmOnEnter: z.boolean(),
   alarmOnExit: z.boolean(),
@@ -145,6 +159,7 @@ export type Zones = z.infer<typeof Zones>;
 
 export const ZoneRequest = z.object({
   name: Name,
+  color: ZoneColor,
   shape: ZoneShape,
   alarmOnEnter: z.boolean(),
   alarmOnExit: z.boolean(),
@@ -155,3 +170,14 @@ export const ZoneRequest = z.object({
 });
 
 export type ZoneRequest = z.infer<typeof ZoneRequest>;
+
+export const InsideVehicle = z.object({
+  objectId: z.string(),
+  since: UtcTime,
+});
+
+export type InsideVehicle = z.infer<typeof InsideVehicle>;
+
+export const InsideVehicles = z.array(InsideVehicle);
+
+export type InsideVehicles = z.infer<typeof InsideVehicles>;
