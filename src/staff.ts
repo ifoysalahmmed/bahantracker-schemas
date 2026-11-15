@@ -7,7 +7,7 @@ import {
   Phone,
   Username,
 } from './accounts.js';
-import { paged, UtcTime } from './common.js';
+import { paged, PageQuery, UtcTime } from './common.js';
 
 export const StaffAccount = z.object({
   id: z.string(),
@@ -26,6 +26,14 @@ export type StaffAccount = z.infer<typeof StaffAccount>;
 export const StaffPage = paged(StaffAccount);
 
 export type StaffPage = z.infer<typeof StaffPage>;
+
+export const StaffQuery = PageQuery.extend({
+  q: z.string().trim().max(100).optional(),
+  role: ManagedStaffRole.optional(),
+  status: AccountStatus.optional(),
+});
+
+export type StaffQuery = z.infer<typeof StaffQuery>;
 
 const NewStaff = z.object({
   name: Name,
