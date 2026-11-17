@@ -50,6 +50,7 @@ export const Alarm = z.object({
   limitValue: z.number().nullable(),
   zoneId: z.string().nullable(),
   zoneName: z.string().nullable(),
+  estimated: z.boolean(),
 });
 
 export type Alarm = z.infer<typeof Alarm>;
