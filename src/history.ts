@@ -63,6 +63,8 @@ export type HistoryPeriod = z.infer<typeof HistoryPeriod>;
 export const HistoryTrip = z.object({
   start: UtcTime,
   end: UtcTime.nullable(),
+  startLat: Latitude,
+  startLon: Longitude,
   distanceM: z.number().min(0),
   maxSpeedKmh: z.number().min(0),
 });
@@ -95,6 +97,7 @@ export const HistoryAlarm = z.object({
   limitValue: z.number().nullable(),
   zoneId: z.string().nullable(),
   zoneName: z.string().nullable(),
+  estimated: z.boolean(),
 });
 
 export type HistoryAlarm = z.infer<typeof HistoryAlarm>;
