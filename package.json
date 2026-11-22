@@ -1,7 +1,7 @@
 {
-  "name": "@gotirekha/schemas",
-  "version": "0.16.0",
-  "description": "Shapes and fixed lists shared by the Gotirekha programs",
+  "name": "@bahantracker/schemas",
+  "version": "0.17.0",
+  "description": "Shapes and fixed lists shared by the BahanTracker programs",
   "private": true,
   "type": "module",
   "sideEffects": false,
