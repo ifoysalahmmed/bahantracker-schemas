@@ -71,6 +71,30 @@ export const HistoryTrip = z.object({
 
 export type HistoryTrip = z.infer<typeof HistoryTrip>;
 
+export const MATCHED_PATH_MAX_POINTS = 100_000;
+
+export const MatchedPath = z
+  .object({
+    start: UtcTime,
+    lats: z.array(Latitude).min(2).max(MATCHED_PATH_MAX_POINTS),
+    lons: z.array(Longitude),
+    startGapPoints: z.int().min(0),
+  })
+  .refine((value) => value.lons.length === value.lats.length, {
+    path: ['lons'],
+  })
+  .refine((value) => value.startGapPoints <= value.lats.length, {
+    path: ['startGapPoints'],
+  });
+
+export type MatchedPath = z.infer<typeof MatchedPath>;
+
+export const HistoryPaths = z.object({
+  paths: z.array(MatchedPath),
+});
+
+export type HistoryPaths = z.infer<typeof HistoryPaths>;
+
 export const AlarmType = z.enum([
   'overspeed',
   'ignition_on',
