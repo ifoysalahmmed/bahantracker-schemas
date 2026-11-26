@@ -1,6 +1,6 @@
 {
   "name": "@bahantracker/schemas",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Shapes and fixed lists shared by the BahanTracker programs",
   "private": true,
   "type": "module",
